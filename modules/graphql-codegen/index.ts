@@ -15,7 +15,7 @@ const appDir = dirname(fileURLToPath(import.meta.url))
 
 const defaultConfig = {
 	dir: `${appDir}/app/graphql`,
-	types: `${appDir}/app/types`,
+	types: `${appDir}/types`,
 	queries: `${appDir}/app/composables`,
 };
 
