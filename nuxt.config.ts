@@ -21,9 +21,10 @@ export default defineNuxtConfig({
 				},
 			},
 		},
+		/*
 		optimizeDeps: {
 			include: ['vue-datocms'],
-		},
+		},*/
 	},
 	$production: {
 		routeRules: {
