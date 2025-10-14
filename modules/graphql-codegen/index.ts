@@ -4,7 +4,7 @@ import type { Types } from '@graphql-codegen/plugin-helpers';
 import defu from 'defu';
 import type { Nuxt } from 'nuxt/schema';
 import { fileURLToPath } from 'node:url';
-import { dirname, join } from 'node:path';
+import { dirname } from 'node:path';
 
 type CodegenModuleOptions = Types.Config;
 
@@ -18,7 +18,6 @@ const defaultConfig = {
 	types: `${appDir}/app/types`,
 	queries: `${appDir}/app/composables`,
 };
-console.log(defaultConfig);
 
 export default defineNuxtModule<CodegenModuleOptions>({
 	meta: {
