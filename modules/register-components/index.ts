@@ -1,4 +1,4 @@
-import { addComponent, defineNuxtModule } from '@nuxt/kit';
+import { addComponent, createResolver, defineNuxtModule } from '@nuxt/kit';
 
 const components = [
 	{
@@ -20,7 +20,7 @@ export default defineNuxtModule({
 			version: '>=8',
 			// By default moduleDependencies will be added to the list of modules
 			// to be installed by Nuxt unless `optional` is set.
-			optional: false,
+			optional: true,
 			// Any configuration that should override `nuxt.options`.
 			overrides: {},
 			// Any configuration that should be set. It will override module defaults but
@@ -29,6 +29,7 @@ export default defineNuxtModule({
 		},
 	},
 	setup() {
-		components.forEach((c) => addComponent(c));
+		const resolver = createResolver(import.meta.url);
+		components.map((c) => ({ ...c, filePath: resolver.resolve(c.filePath) })).forEach((c) => addComponent(c));
 	},
 });
