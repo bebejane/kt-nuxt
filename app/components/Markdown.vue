@@ -5,7 +5,6 @@ const props = defineProps({
 	source: String,
 });
 </script>
-
 <template :if="props.source !== undefined">
 	<VueMarkdown :source="props.source as string" />
 </template>
