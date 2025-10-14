@@ -5,13 +5,13 @@ const components = [
 		name: 'Image',
 		as: 'Image',
 		export: 'Image',
-		filePath: 'node_modules/vue-datocms',
+		filePath: 'vue-datocms',
 	},
 	{
 		name: 'StructuredText',
 		as: 'StructuredText',
 		export: 'StructuredText',
-		filePath: 'node_modules/vue-datocms',
+		filePath: 'vue-datocms',
 	},
 ];
 
