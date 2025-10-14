@@ -1,6 +1,6 @@
 {
 	"name": "kt-nuxt-datocms",
-	"version": "0.0.27",
+	"version": "0.0.28",
 	"type": "module",
 	"private": true,
 	"scripts": {
@@ -12,7 +12,6 @@
 	},
 	"dependencies": {
 		"@datocms/cda-client": "^0.2.7",
-		"@datocms/cli": "^3.1.4",
 		"@graphql-codegen/cli": "^5.0.7",
 		"@graphql-codegen/typed-document-node": "^5.1.2",
 		"@graphql-codegen/typescript": "^4.1.6",
