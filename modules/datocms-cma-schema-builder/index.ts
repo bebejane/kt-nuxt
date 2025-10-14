@@ -19,7 +19,7 @@ export default defineNuxtModule<CodegenModuleOptions>({
 	},
 	async setup(options: CodegenModuleOptions, nuxt: Nuxt) {
 		async function generateCode() {
-			const res = await run(['schema:generate', `${appDir}/types/datocms-cma-schema.ts`]);
+			const res = await run(['schema', 'generate', `${appDir}/types/datocms-cma-schema.ts`]);
 			console.log(res);
 		}
 
