@@ -3,8 +3,12 @@ import { generate } from '@graphql-codegen/cli';
 import type { Types } from '@graphql-codegen/plugin-helpers';
 import defu from 'defu';
 import type { Nuxt } from 'nuxt/schema';
+import { fileURLToPath } from 'node:url';
+import { dirname, join } from 'node:path';
 
 type CodegenModuleOptions = Types.Config;
+
+const currentDir = dirname(fileURLToPath(import.meta.url));
 
 const defaultConfig = {
 	dir: './app/graphql',
@@ -18,6 +22,7 @@ export default defineNuxtModule<CodegenModuleOptions>({
 		configKey: 'graphqlCodegen',
 	},
 	async setup(options: CodegenModuleOptions, nuxt: Nuxt) {
+		console.log(currentDir);
 		const c = options.config as GraphqlCodegenOptions;
 		async function generateCode() {
 			const config = defu(options, getConfig(c ?? defaultConfig));
