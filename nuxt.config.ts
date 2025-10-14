@@ -2,7 +2,7 @@ import { defineNuxtConfig } from 'nuxt/config';
 import { fileURLToPath } from 'node:url';
 import { dirname } from 'node:path';
 
-const appDir = dirname(fileURLToPath(import.meta.url))
+const rootDir = dirname(fileURLToPath(import.meta.url))
 	.split('/')
 	.slice(0, -5)
 	.join('/');
@@ -18,7 +18,7 @@ export default defineNuxtConfig({
 		css: {
 			preprocessorOptions: {
 				scss: {
-					additionalData: `@use "${appDir}/assets/styles/_mediaqueries.scss" as *;`,
+					additionalData: `@use "${rootDir}/app/assets/styles/_mediaqueries.scss" as *;`,
 				},
 			},
 		},
