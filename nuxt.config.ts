@@ -4,7 +4,7 @@ import { dirname } from 'node:path';
 
 const rootDir = dirname(fileURLToPath(import.meta.url))
 	.split('/')
-	.slice(0, -5)
+	.slice(0, -3)
 	.join('/');
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
