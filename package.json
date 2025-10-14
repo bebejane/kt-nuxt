@@ -1,6 +1,6 @@
 {
 	"name": "kt-nuxt-datocms",
-	"version": "0.0.37",
+	"version": "0.0.38",
 	"type": "module",
 	"private": true,
 	"scripts": {
