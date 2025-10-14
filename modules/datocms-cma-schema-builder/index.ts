@@ -29,7 +29,7 @@ export default defineNuxtModule<CodegenModuleOptions>({
 	moduleDependencies: {
 		'@datocms/cli': {
 			version: '>=3.1.4',
-			optional: false,
+			optional: true,
 		},
 	},
 });
