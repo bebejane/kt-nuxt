@@ -5,5 +5,6 @@ export default function (date: string, locale = 'en-US', month: Intl.DateTimeFor
 		month,
 		day: 'numeric',
 	};
+	console.log(options);
 	return dateObj.toLocaleDateString(locale, options);
 }
