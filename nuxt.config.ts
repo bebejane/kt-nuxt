@@ -7,7 +7,6 @@ const rootDir = dirname(fileURLToPath(import.meta.url))
 	.slice(0, -3)
 	.join('/');
 
-// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
 	$meta: {
 		name: 'kt-nuxt-datocms',
