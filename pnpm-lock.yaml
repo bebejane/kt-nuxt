@@ -7,7 +7,7 @@ settings:
 importers:
 
   .:
-    dependencies:
+    devDependencies:
       '@datocms/cda-client':
         specifier: ^0.2.7
         version: 0.2.7(graphql@16.11.0)
