@@ -7,9 +7,9 @@ import type { Nuxt } from 'nuxt/schema';
 type CodegenModuleOptions = Types.Config;
 
 const defaultConfig = {
-	dir: 'app/graphql',
-	types: 'app/types',
-	queries: 'app/composables',
+	dir: './app/graphql',
+	types: './app/types',
+	queries: './app/composables',
 };
 
 export default defineNuxtModule<CodegenModuleOptions>({
