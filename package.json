@@ -1,6 +1,6 @@
 {
 	"name": "kt-nuxt-datocms",
-	"version": "0.0.17",
+	"version": "0.0.18",
 	"type": "module",
 	"private": true,
 	"scripts": {
@@ -24,9 +24,7 @@
 		"@graphql-codegen/typescript": "^4.1.6",
 		"@graphql-codegen/typescript-graphql-files-modules": "^3.0.1",
 		"@graphql-codegen/typescript-operations": "^4.6.1",
-		"@types/markdown-it": "^14.1.2"
-	},
-	"devDependencies": {
+		"@types/markdown-it": "^14.1.2",
 		"nuxt": "^4.1.3"
 	}
 }
