@@ -11,9 +11,9 @@ type CodegenModuleOptions = Types.Config;
 const appDir = process.cwd();
 
 const defaultConfig = {
-	dir: `${appDir}/app/graphql`,
-	types: `${appDir}/app/types`,
-	queries: `${appDir}/app/composables`,
+	dir: `~/app/graphql`,
+	types: `~/app/types`,
+	queries: `~/app/composables`,
 };
 console.log(defaultConfig);
 
