@@ -3,13 +3,15 @@ import { addComponent, createResolver, defineNuxtModule } from '@nuxt/kit';
 const components = [
 	{
 		name: 'Image',
+		as: 'Image',
 		export: 'Image',
-		filePath: 'vue-datocms',
+		from: 'vue-datocms',
 	},
 	{
 		name: 'StructuredText',
+		as: 'StructuredText',
 		export: 'StructuredText',
-		filePath: 'vue-datocms',
+		from: 'vue-datocms',
 	},
 ];
 
@@ -31,6 +33,6 @@ export default defineNuxtModule({
 	setup() {
 		const resolver = createResolver(import.meta.url);
 		//components.map((c) => ({ ...c, filePath: resolver.resolve(c.filePath) })).forEach((c) => addComponent(c));
-		//components.forEach((c) => addComponent(c));
+		components.forEach((c) => addComponent(c));
 	},
 });
