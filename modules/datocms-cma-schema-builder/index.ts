@@ -7,7 +7,7 @@ import { execSync } from 'node:child_process';
 
 type CodegenModuleOptions = Types.Config;
 
-const appDir = dirname(fileURLToPath(import.meta.url))
+const rootDir = dirname(fileURLToPath(import.meta.url))
 	.split('/')
 	.slice(0, -5)
 	.join('/');
@@ -19,7 +19,7 @@ export default defineNuxtModule<CodegenModuleOptions>({
 	},
 	async setup(options: CodegenModuleOptions, nuxt: Nuxt) {
 		async function generateCode() {
-			const res = execSync(`pnpx @datocms/cli schema:generate ${appDir}/types/datocms-cma-schema.ts`);
+			const res = execSync(`pnpx @datocms/cli schema:generate ${rootDir}/app/types/datocms-cma-schema.ts`);
 			console.log(res);
 		}
 

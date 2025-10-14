@@ -20,7 +20,7 @@ export default defineNuxtModule({
 			version: '>=8',
 			// By default moduleDependencies will be added to the list of modules
 			// to be installed by Nuxt unless `optional` is set.
-			optional: true,
+			optional: false,
 			// Any configuration that should override `nuxt.options`.
 			overrides: {},
 			// Any configuration that should be set. It will override module defaults but

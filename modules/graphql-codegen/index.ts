@@ -8,15 +8,15 @@ import { dirname } from 'node:path';
 
 type CodegenModuleOptions = Types.Config;
 
-const appDir = dirname(fileURLToPath(import.meta.url))
+const rootDir = dirname(fileURLToPath(import.meta.url))
 	.split('/')
 	.slice(0, -5)
 	.join('/');
 
 const defaultConfig = {
-	dir: `${appDir}/app/graphql`,
-	types: `${appDir}/types`,
-	queries: `${appDir}/app/composables`,
+	dir: `${rootDir}/app/graphql`,
+	types: `${rootDir}/app/types`,
+	queries: `${rootDir}/app/composables`,
 };
 
 export default defineNuxtModule<CodegenModuleOptions>({
