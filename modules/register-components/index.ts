@@ -30,6 +30,8 @@ export default defineNuxtModule({
 	},
 	setup() {
 		const resolver = createResolver(import.meta.url);
-		components.map((c) => ({ ...c, filePath: resolver.resolve(c.filePath) })).forEach((c) => addComponent(c));
+		console.log(resolver.resolve('vue-datocms'));
+		//components.map((c) => ({ ...c, filePath: resolver.resolve(c.filePath) })).forEach((c) => addComponent(c));
+		components.forEach((c) => addComponent(c));
 	},
 });
