@@ -18,7 +18,7 @@ export default defineNuxtConfig({
 		css: {
 			preprocessorOptions: {
 				scss: {
-					additionalData: `@use "${rootDir}/app/assets/styles/_mediaqueries.scss" as *;`,
+					additionalData: `@use "~/app/assets/styles/_mediaqueries.scss" as *;`,
 				},
 			},
 		},
