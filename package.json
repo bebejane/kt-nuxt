@@ -1,6 +1,6 @@
 {
 	"name": "kt-nuxt-datocms",
-	"version": "0.0.56",
+	"version": "0.0.57",
 	"type": "module",
 	"private": true,
 	"scripts": {
@@ -10,7 +10,26 @@
 		"preview": "nuxt preview",
 		"pub": "npm version patch --force && git add . && git commit -m \"update\" && git push"
 	},
-	"dependencies": {
+	"devDependencies": {
+		"@datocms/cda-client": "^0.2.7",
+		"@datocms/cma-client": "5.1.20",
+		"@graphql-codegen/cli": "^5.0.7",
+		"@graphql-codegen/typed-document-node": "^5.1.2",
+		"@graphql-codegen/typescript": "^4.1.6",
+		"@graphql-codegen/typescript-graphql-files-modules": "^3.0.1",
+		"@graphql-codegen/typescript-operations": "^4.6.1",
+		"@graphql-typed-document-node/core": "^3.2.0",
+		"@types/markdown-it": "^14.1.2",
+		"graphql": "^16.11.0",
+		"nuxt": "^4.1.3",
+		"sass": "^1.93.2",
+		"sass-embedded": "^1.93.2",
+		"sass-loader": "^16.0.5",
+		"valibot": "^1.1.0",
+		"vue-datocms": "8.1.4",
+		"vue-markdown-render": "^2.3.0"
+	},
+	"peerDependencies": {
 		"@datocms/cda-client": "^0.2.7",
 		"@datocms/cma-client": "5.1.20",
 		"@graphql-codegen/cli": "^5.0.7",
