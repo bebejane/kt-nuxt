@@ -8,9 +8,7 @@ export const useApiQuery = async <T, V = void>(
 	variables?: ExecuteQueryOptions<V>['variables'],
 	options?: ExecuteQueryOptions<V>
 ): Promise<T> => {
+	//@ts-ignore
 	const config = useRuntimeConfig();
-
-	console.log('config', config);
-
 	return executeQuery(query, { ...options, variables, token: config.public.apiToken as string });
 };
