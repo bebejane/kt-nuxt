@@ -1,13 +1,14 @@
 {
 	"name": "kt-nuxt-datocms",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"type": "module",
 	"private": true,
 	"scripts": {
 		"build": "nuxt build",
 		"dev": "nuxt dev",
 		"generate": "nuxt generate",
-		"preview": "nuxt preview"
+		"preview": "nuxt preview",
+		"pub": "npm version patch --force && npm run build && git add . && git commit -m \"update\" && git push"
 	},
 	"dependencies": {
 		"@datocms/cda-client": "^0.2.7",
