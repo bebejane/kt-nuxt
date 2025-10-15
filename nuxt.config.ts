@@ -11,9 +11,6 @@ export default defineNuxtConfig({
 	$meta: {
 		name: 'kt-nuxt-datocms',
 	},
-	typescript: {
-		includeWorkspace: true,
-	},
 	compatibilityDate: '2025-07-15',
 	devtools: { enabled: true },
 	vite: {
