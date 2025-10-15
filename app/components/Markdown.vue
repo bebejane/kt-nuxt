@@ -9,8 +9,9 @@ type Props = {
 };
 
 const props = defineProps<Props>();
+const options: MarkdownItOptions = { ...props.options };
 </script>
 
 <template :if="props.source !== undefined">
-	<VueMarkdown :source="props.source as string" />
+	<VueMarkdown :source="props.source as string" :options="options" :plugins="props.plugins" />
 </template>
