@@ -2,7 +2,7 @@ import { executeQuery, type ExecuteQueryOptions } from '@datocms/cda-client';
 import type { DocumentNode, FieldNode, OperationDefinitionNode, VariableDefinitionNode } from 'graphql';
 import { useAsyncData } from '#imports';
 
-export type ApiQueryOptions<V> = ExecuteQueryOptions<V> & { all?: boolean };
+export type ApiQueryOptions<V = void> = ExecuteQueryOptions<V> & { all?: boolean };
 
 export const useApiQuery = async <T, V = void>(
 	key: string,
