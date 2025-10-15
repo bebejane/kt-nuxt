@@ -3,21 +3,8 @@ import { generate } from '@graphql-codegen/cli';
 import type { Types } from '@graphql-codegen/plugin-helpers';
 import defu from 'defu';
 import type { Nuxt } from 'nuxt/schema';
-import { fileURLToPath } from 'node:url';
-import { dirname } from 'node:path';
 
 type CodegenModuleOptions = Types.Config;
-
-const rootDir = dirname(fileURLToPath(import.meta.url))
-	.split('/')
-	.slice(0, -5)
-	.join('/');
-
-const defaultConfig = {
-	dir: `${rootDir}/app/graphql`,
-	types: `${rootDir}/app/types`,
-	queries: `${rootDir}/app/composables`,
-};
 
 export default defineNuxtModule<CodegenModuleOptions>({
 	meta: {
@@ -26,6 +13,14 @@ export default defineNuxtModule<CodegenModuleOptions>({
 	},
 	async setup(options: CodegenModuleOptions, nuxt: Nuxt) {
 		const c = options.config as GraphqlCodegenOptions;
+		const appDir = nuxt.options.dir.app;
+
+		const defaultConfig = {
+			dir: `${appDir}/graphql`,
+			types: `${appDir}/types`,
+			queries: `${appDir}/composables`,
+		};
+
 		async function generateCode() {
 			const config = defu(options, getConfig(c ?? defaultConfig));
 			await generate(config, true);

@@ -2,12 +2,10 @@ import { executeQuery, type ExecuteQueryOptions } from '@datocms/cda-client';
 import type { DocumentNode, FieldNode, OperationDefinitionNode, VariableDefinitionNode } from 'graphql';
 import { useAsyncData } from '#imports';
 
-export type ApiQueryOptions<V = void> = ExecuteQueryOptions<V> & { all?: boolean };
-
 export const useApiQuery = async <T, V = void>(
 	key: string,
 	query: DocumentNode,
-	options?: ApiQueryOptions<V>
+	options?: ExecuteQueryOptions<V> & { all?: boolean }
 ): Promise<ReturnType<typeof useAsyncData<T>>> => {
 	const config = useRuntimeConfig();
 	const opt: ApiQueryOptions<V> = { ...options, token: config.public.apiToken };
