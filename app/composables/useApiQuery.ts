@@ -5,7 +5,7 @@ import { useAsyncData } from '#imports';
 export const useApiQuery = async <T, V = void>(
 	key: string,
 	query: DocumentNode,
-	options?: ExecuteQueryOptions<V> & { all?: boolean }
+	options?: Omit<ExecuteQueryOptions<V>, 'token'> & { all?: boolean }
 ): Promise<ReturnType<typeof useAsyncData<T>>> => {
 	const config = useRuntimeConfig();
 	const opt: ApiQueryOptions<V> = { ...options, token: config.public.apiToken };
@@ -38,7 +38,7 @@ const executeAllQuery = async <T, V = void>(
 
 		const pageKeys = Object.keys(data).filter((k) => k.startsWith('_all') && k.endsWith('Meta'));
 
-		if (pageKeys.length === 0) throw new Error('Query must have at least one paginated field');
+		//if (pageKeys.length === 0) throw new Error('Query must have at least one paginated field');
 
 		const pageKeyMap: { [key: string]: string } = pageKeys.reduce<{ [key: string]: string }>((acc, cur) => {
 			acc[cur] = `${cur.substring(1, cur.length - 'Meta'.length)}`;
@@ -79,6 +79,7 @@ const executeAllQuery = async <T, V = void>(
 				},
 			});
 
+			console.log(pageData);
 			Object.keys(pageKeyMap).forEach(
 				(k: string) =>
 					typeof pageKeyMap[k] !== 'undefined' &&
