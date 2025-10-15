@@ -2,24 +2,22 @@ import { executeQuery, type ExecuteQueryOptions } from '@datocms/cda-client';
 import type { DocumentNode, FieldNode, OperationDefinitionNode, VariableDefinitionNode } from 'graphql';
 import { useAsyncData } from '#imports';
 
-export type ApiQueryOptions = ExecuteQueryOptions & { all?: boolean };
+export type ApiQueryOptions<V> = ExecuteQueryOptions<V> & { all?: boolean };
 
 export const useApiQuery = async <T, V = void>(
 	key: string,
 	query: DocumentNode,
-	variables?: ExecuteQueryOptions<V>['variables'],
-	options?: ExecuteQueryOptions<V> & { all?: boolean }
+	options?: ApiQueryOptions<V>
 ): Promise<ReturnType<typeof useAsyncData<T>>> => {
 	const config = useRuntimeConfig();
-	const opt = { ...options, variables, token: config.public.apiToken };
+	const opt: ApiQueryOptions<V> = { ...options, token: config.public.apiToken };
 	return useAsyncData(key, () =>
-		options?.all ? executeAllQuery<T, V>(query, variables, opt, {}, key) : executeQuery(query, opt)
+		options?.all ? executeAllQuery<T, V>(query, opt, {}, key) : executeQuery(query, opt)
 	);
 };
 
 const executeAllQuery = async <T, V = void>(
 	query: DocumentNode,
-	variables: ExecuteQueryOptions<V>['variables'],
 	options: ExecuteQueryOptions<V>,
 	data: { [key: string]: any },
 	queryId: string
@@ -77,7 +75,7 @@ const executeAllQuery = async <T, V = void>(
 			const pageData: any = await executeQuery<T>(query, {
 				...options,
 				variables: {
-					...variables,
+					...options.variables,
 					first,
 					skip,
 				},
