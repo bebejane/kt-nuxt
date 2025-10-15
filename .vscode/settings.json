@@ -1,7 +1,7 @@
 {
   "files.exclude": {
-    ".nuxt": true,
-    "node_modules": true,
-    ".vscode": true
+    ".nuxt": false,
+    "node_modules": false,
+    ".vscode": false
   }
 }
