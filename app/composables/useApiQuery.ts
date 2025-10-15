@@ -11,7 +11,7 @@ export const useApiQuery = async <T, V = void>(
 	options?: ExecuteQueryOptions<V>
 ): Promise<ReturnType<typeof useAsyncData>> => {
 	const config = useRuntimeConfig();
-	return useAsyncData(key, () =>
-		executeQuery<T>(query, { ...options, variables, token: config.public.apiToken as string })
+	return useAsyncData<T>(key, () =>
+		executeQuery(query, { ...options, variables, token: config.public.apiToken as string })
 	);
 };
