@@ -13,6 +13,7 @@ export default defineNuxtModule<CodegenModuleOptions>({
 		configKey: 'graphqlCodegen',
 	},
 	async setup(options: CodegenModuleOptions, nuxt: Nuxt) {
+		if (process.env.NODE_ENV !== 'development') return;
 		const c = options.config as GraphqlCodegenOptions;
 		const appDir = nuxt.options.dir.app;
 		const logger = useLogger('gql', { formatOptions: { colors: true } });

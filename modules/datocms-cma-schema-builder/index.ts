@@ -12,6 +12,7 @@ export default defineNuxtModule<CodegenModuleOptions>({
 		configKey: 'datocmsCmaSchemaBuilder',
 	},
 	async setup(options: CodegenModuleOptions, nuxt: Nuxt) {
+		if (process.env.NODE_ENV !== 'development') return;
 		const appDir = nuxt.options.dir.app;
 		const logger = useLogger('datocms-cma-schema-builder', { formatOptions: { colors: true } });
 
