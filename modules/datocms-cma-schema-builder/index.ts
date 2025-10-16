@@ -3,6 +3,7 @@ import { colors } from 'consola/utils';
 import type { Types } from '@graphql-codegen/plugin-helpers';
 import type { Nuxt } from 'nuxt/schema';
 import { execSync } from 'node:child_process';
+import fs from 'node:fs';
 
 type CodegenModuleOptions = Types.Config;
 
@@ -14,11 +15,15 @@ export default defineNuxtModule<CodegenModuleOptions>({
 	async setup(options: CodegenModuleOptions, nuxt: Nuxt) {
 		if (process.env.NODE_ENV !== 'development') return;
 		const appDir = nuxt.options.dir.app;
+		const rootDir = appDir.split('/').slice(0, -1).join('/');
+		const typesDir = `${rootDir}/server/types`;
 		const logger = useLogger('datocms-cma-schema-builder', { formatOptions: { colors: true } });
 
 		function generateCode() {
 			try {
-				execSync(`pnpx @datocms/cli schema:generate ${appDir}/types/datocms-cma-schema.ts`);
+				if (!fs.existsSync(typesDir)) fs.mkdirSync(typesDir);
+
+				execSync(`pnpx @datocms/cli schema:generate ${typesDir}/datocms-cma-schema.ts`);
 				logger.log(`${colors.blue('✔')} DatoCMS CMA Schema generated`);
 			} catch (e) {
 				logger.error(`${colors.red('x')} DatoCMS CMA Schema error`);

@@ -21,11 +21,14 @@ export default defineNuxtModule<CodegenModuleOptions>({
 		const rootDir = appDir.split('/').slice(0, -1).join('/');
 		const configFile = `${rootDir}/graphql.config.json`;
 		const logger = useLogger('gql', { formatOptions: { colors: true } });
-		const defaultConfig = {
+		const defaultConfig: { [key: string]: string } = {
 			dir: `${appDir}/graphql`,
 			types: `${appDir}/types`,
 			queries: `${appDir}/composables`,
 		};
+
+		// Create config dir if not exists
+		for (const key in defaultConfig) if (!fs.existsSync(defaultConfig[key])) fs.mkdirSync(defaultConfig[key]);
 
 		const config = defu({ ...options, errorsOnly: true, silent: true }, getConfig(c ?? defaultConfig));
 		fs.writeFileSync(configFile, JSON.stringify(config, null, 2));
@@ -82,6 +85,7 @@ const defaultModuleConfig = {
 	exportFragmentSpreadSubTypes: true,
 	namingConvention: 'keep',
 	skipDocumentsValidation: false,
+	useTypeImports: true,
 };
 
 export type GraphqlCodegenOptions = {
@@ -92,9 +96,9 @@ export type GraphqlCodegenOptions = {
 
 const getConfig = (options: GraphqlCodegenOptions): Types.Config => {
 	const documents = `${options.dir}/**/*.gql`;
-	const typesPath = `${options.types}/datocms.d.ts`;
-	const modulesPath = `${options.types}/document-modules.d.ts`;
-	const queriesPath = `${options.queries}/grqphql-queries.ts`;
+	const typesPath = `${options.types}/datocms-cda-schema.d.ts`;
+	const modulesPath = `${options.types}/datocms-document-modules.d.ts`;
+	const queriesPath = `${options.queries}/datocms-graphql-queries.ts`;
 
 	return {
 		schema: {
@@ -111,14 +115,16 @@ const getConfig = (options: GraphqlCodegenOptions): Types.Config => {
 				plugins: ['typescript', 'typescript-operations'],
 				config: { ...defaultModuleConfig, noExport: true },
 			},
+			[queriesPath]: {
+				plugins: ['typed-document-node'],
+				config: { ...defaultModuleConfig },
+			},
+			/*
 			[modulesPath]: {
 				plugins: ['typescript-graphql-files-modules'],
 				config: { ...defaultModuleConfig },
 			},
-			[queriesPath]: {
-				plugins: ['typed-document-node'],
-				config: { ...defaultModuleConfig, useTypeImports: true },
-			},
+			*/
 		},
 	};
 };
