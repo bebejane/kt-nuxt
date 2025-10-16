@@ -9,10 +9,21 @@ export const useApiQuery = async <T, V = void>(
 ): Promise<ReturnType<typeof useAsyncData<T>>> => {
 	const config = useRuntimeConfig();
 	const opt: ApiQueryOptions<V> = { ...options, token: config.public.apiToken };
+	const operation = query.definitions?.find(({ kind }) => kind === 'OperationDefinition') as OperationDefinitionNode;
+	console.log(
+		`useApiQuery: ${operation.name?.value} (${operation.variableDefinitions?.reduce(
+			// @ts-ignore
+			(acc, cur) => `${acc}$${cur.variable?.name?.value ?? ''}: ${cur.type?.name?.value ?? ''}`,
+			''
+		)}) ${JSON.stringify(options?.variables ?? {})}`
+	);
+
 	return useAsyncData(key, () =>
 		options?.all ? executeAllQuery<T, V>(query, opt, {}, key) : executeQuery(query, opt)
 	);
 };
+
+const log = (...args: any[]) => console.log(...args);
 
 const executeAllQuery = async <T, V = void>(
 	query: DocumentNode,

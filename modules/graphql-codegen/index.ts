@@ -8,7 +8,7 @@ type CodegenModuleOptions = Types.Config;
 
 export default defineNuxtModule<CodegenModuleOptions>({
 	meta: {
-		name: 'graphql-codegen',
+		name: 'Graphql Codegen',
 		configKey: 'graphqlCodegen',
 	},
 	async setup(options: CodegenModuleOptions, nuxt: Nuxt) {
@@ -22,7 +22,7 @@ export default defineNuxtModule<CodegenModuleOptions>({
 		};
 
 		async function generateCode() {
-			const config = defu(options, getConfig(c ?? defaultConfig));
+			const config = defu({ ...options, errorsOnly: true }, getConfig(c ?? defaultConfig));
 			await generate(config, true);
 		}
 

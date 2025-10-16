@@ -16,6 +16,10 @@ const components = [
 ];
 
 export default defineNuxtModule({
+	meta: {
+		name: 'Datocms Vue Components',
+		configKey: 'vueDatoCms',
+	},
 	moduleDependencies: {
 		'vue-datocms': {
 			// You can specify a version constraint for the module

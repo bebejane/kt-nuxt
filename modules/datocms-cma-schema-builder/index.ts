@@ -7,7 +7,7 @@ type CodegenModuleOptions = Types.Config;
 
 export default defineNuxtModule<CodegenModuleOptions>({
 	meta: {
-		name: 'datocms-cma-schema-builder',
+		name: 'DatoCMS Schema Builder',
 		configKey: 'datocmsCmaSchemaBuilder',
 	},
 	async setup(options: CodegenModuleOptions, nuxt: Nuxt) {
@@ -18,6 +18,6 @@ export default defineNuxtModule<CodegenModuleOptions>({
 		}
 
 		nuxt.hook('build:before', generateCode);
-		//nuxt.hook('builder:watch', generateCode);
+		nuxt.hook('builder:watch', generateCode);
 	},
 });
