@@ -4,6 +4,7 @@ import { generate } from '@graphql-codegen/cli';
 import type { Types } from '@graphql-codegen/plugin-helpers';
 import defu from 'defu';
 import type { Nuxt } from 'nuxt/schema';
+import fs from 'node:fs';
 
 type CodegenModuleOptions = Types.Config;
 
@@ -14,8 +15,11 @@ export default defineNuxtModule<CodegenModuleOptions>({
 	},
 	async setup(options: CodegenModuleOptions, nuxt: Nuxt) {
 		if (process.env.NODE_ENV !== 'development') return;
+
 		const c = options.config as GraphqlCodegenOptions;
 		const appDir = nuxt.options.dir.app;
+		const rootDir = appDir.split('/').slice(0, -1).join('/');
+		const configFile = `${rootDir}/graphql.config.json`;
 		const logger = useLogger('gql', { formatOptions: { colors: true } });
 		const defaultConfig = {
 			dir: `${appDir}/graphql`,
@@ -23,16 +27,18 @@ export default defineNuxtModule<CodegenModuleOptions>({
 			queries: `${appDir}/composables`,
 		};
 
+		const config = defu({ ...options, errorsOnly: true, silent: true }, getConfig(c ?? defaultConfig));
+		fs.writeFileSync(configFile, JSON.stringify(config, null, 2));
+		logger.log(`${colors.blue('✔')} Graphql: Wrote config ${configFile}`);
+
 		async function generateCode(event?: String, file?: string) {
 			if (file?.endsWith('.graphql') || file?.endsWith('.gql') || !event) {
-				const config = defu({ ...options, errorsOnly: true, silent: true }, getConfig(c ?? defaultConfig));
-
 				generate(config, true)
 					.then(() => {
-						logger.log(`${colors.blue('✔')} Graphql regenerated: ${file ?? 'all'}`);
+						logger.log(`${colors.blue('✔')} Graphql: Regenerated - ${file ?? 'all'}`);
 					})
 					.catch((e) => {
-						logger.error(`${colors.red('x')} Graphql error`);
+						logger.error(`${colors.red('x')} Graphql: Error`);
 						logger.error(`${colors.red(e.message)}`);
 					});
 			}
