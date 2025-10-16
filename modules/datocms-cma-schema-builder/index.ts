@@ -17,7 +17,10 @@ export default defineNuxtModule<CodegenModuleOptions>({
 			execSync(`pnpx @datocms/cli schema:generate ${appDir}/types/datocms-cma-schema.ts`);
 		}
 
-		nuxt.hook('build:before', generateCode);
-		nuxt.hook('builder:watch', generateCode);
+		//nuxt.hook('build:before', generateCode);
+		nuxt.hook('builder:watch', (e, stuff) => {
+			console.log(e, stuff);
+			//generateCode();
+		});
 	},
 });
