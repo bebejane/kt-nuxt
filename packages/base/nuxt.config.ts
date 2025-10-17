@@ -9,7 +9,7 @@ const rootDir = dirname(fileURLToPath(import.meta.url))
 
 export default defineNuxtConfig({
 	$meta: {
-		name: 'kt-nuxt-datocms',
+		name: 'kt-nuxt-datocms-base',
 	},
 	typescript: {
 		includeWorkspace: true,

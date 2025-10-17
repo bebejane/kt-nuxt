@@ -1,6 +1,6 @@
 import { executeQuery, type ExecuteQueryOptions } from '@datocms/cda-client';
 import type { DocumentNode, FieldNode, OperationDefinitionNode, VariableDefinitionNode } from 'graphql';
-import { useAsyncData } from '~~/packages/base/.nuxt/imports';
+import { useAsyncData } from '#imports';
 
 export const useApiQuery = async <T, V = void>(
 	key: string,

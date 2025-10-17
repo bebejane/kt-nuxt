@@ -1,0 +1,19 @@
+{
+	"name": "@kt-nuxt-datocms/i18n",
+	"version": "0.0.1",
+	"type": "module",
+	"private": true,
+	"main": "./nuxt.config.ts",
+	"scripts": {
+		"build": "nuxt build",
+		"dev": "nuxt dev",
+		"generate": "nuxt generate",
+		"preview": "nuxt preview"
+	},
+	"dependencies": {
+		"@datocms/cda-client": "^0.2.7",
+		"@datocms/cma-client": "5.1.20",
+		"@nuxtjs/i18n": "^10.1.1",
+		"nuxt": "^4.1.3"
+	}
+}
