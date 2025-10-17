@@ -2,7 +2,7 @@ import { defineNuxtConfig } from 'nuxt/config';
 
 export default defineNuxtConfig({
 	$meta: {
-		name: 'kt-nuxt-datocms-base',
+		name: 'kt-nuxt-base',
 	},
 	typescript: {
 		includeWorkspace: true,
