@@ -1,13 +1,14 @@
 {
 	"name": "kt-nuxt-datocms",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "",
 	"main": "index.js",
 	"scripts": {
 		"packages": "dotenv -- pnpm --filter",
 		"app": "pnpm packages @nuxt-monorepo/app",
 		"dev": "dotenv -- pnpm -r dev",
-		"build": "dotenv -- pnpm -r build"
+		"build": "dotenv -- pnpm -r build",
+		"pub": "npm version patch --force && git add . && git commit -m \"update\" && git push"
 	},
 	"devDependencies": {
 		"dotenv-cli": "^7.3.0"
