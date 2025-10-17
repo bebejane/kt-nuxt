@@ -1,6 +1,6 @@
 {
 	"name": "kt-nuxt",
-	"version": "1.0.12",
+	"version": "1.0.13",
 	"description": "",
 	"main": "index.js",
 	"scripts": {
@@ -9,8 +9,7 @@
 		"dev": "dotenv -- pnpm -r dev",
 		"build": "dotenv -- pnpm -r build",
 		"pub": "npm version patch --force && git add . && git commit -m \"$(node -e \"console.log('update ' + require('./package.json').version)\")\" && git push",
-		"test": "echo ${node -e \"console.log(require('./package.json').version)\"}",
-		"ver": "echo \"$(node -e \"console.log('update ' + require('./package.json').version)\")\""
+		"test": "echo ${node -e \"console.log(require('./package.json').version)\"}"
 	},
 	"devDependencies": {
 		"dotenv-cli": "^7.3.0"
