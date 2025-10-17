@@ -1,0 +1,21 @@
+{
+	"folders": [
+		{
+			"name": "kt-nuxt-datocms",
+			"path": "."
+		},
+		{
+			"name": "base",
+			"path": "packages/base"
+		},
+		{
+			"name": "dev",
+			"path": "packages/dev"
+		},
+		{
+			"name": "i18n",
+			"path": "packages/i18n"
+		}
+	],
+	"settings": {}
+}

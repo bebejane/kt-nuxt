@@ -1,5 +1,5 @@
 {
-	"name": "@kt-nuxt-datocms/i18n",
+	"name": "@kt-nuxt/i18n",
 	"version": "0.0.1",
 	"type": "module",
 	"private": true,
