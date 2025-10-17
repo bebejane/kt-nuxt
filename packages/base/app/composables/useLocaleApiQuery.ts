@@ -1,8 +1,8 @@
 import { executeQuery, type ExecuteQueryOptions } from '@datocms/cda-client';
 import type { DocumentNode, FieldNode, OperationDefinitionNode, VariableDefinitionNode } from 'graphql';
-import { useAsyncData } from '#imports';
+import { useAsyncData } from '~~/packages/base/.nuxt/imports';
 
-export const useApiQuery = async <T, V = void>(
+export const useLocaleApiQuery = async <T, V = void>(
 	key: string,
 	query: DocumentNode,
 	options?: Omit<ExecuteQueryOptions<V>, 'token'> & { all?: boolean }
