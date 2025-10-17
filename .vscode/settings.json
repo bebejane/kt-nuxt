@@ -3,6 +3,10 @@
     ".vscode": true,
     "node_modules": true,
     "packages/base/.nuxt": true,
-    "packages/i18n/.nuxt": true
+    "packages/i18n/.nuxt": true,
+    "packages/dev/.nuxt": true,
+    "packages/dev/.vscode": true,
+    "kt-nuxt.code-workspace": true,
+    "pnpm-workspace.yaml": true
   }
 }

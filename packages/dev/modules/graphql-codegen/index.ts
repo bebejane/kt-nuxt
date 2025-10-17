@@ -19,11 +19,12 @@ export default defineNuxtModule<CodegenModuleOptions>({
 		const c = options.config as GraphqlCodegenOptions;
 		const appDir = nuxt.options.dir.app;
 		const rootDir = appDir.split('/').slice(0, -1).join('/');
+		const sharedDir = `${rootDir}/shared`;
 		const configFile = `${rootDir}/graphql.config.json`;
 		const logger = useLogger('gql', { formatOptions: { colors: true } });
 		const defaultConfig: { [key: string]: string } = {
 			dir: `${appDir}/graphql`,
-			types: `${appDir}/types`,
+			types: `${sharedDir}/types`,
 			queries: `${appDir}/composables`,
 		};
 
@@ -71,6 +72,10 @@ export default defineNuxtModule<CodegenModuleOptions>({
 			version: '>=4.5',
 			optional: true,
 		},
+		'@graphql-codegen/typescript-vue-urql': {
+			version: '>=3',
+			optional: true,
+		},
 		'defu': {
 			version: '>=6',
 			optional: true,
@@ -98,6 +103,7 @@ const getConfig = (options: GraphqlCodegenOptions): Types.Config => {
 	const documents = `${options.dir}/**/*.gql`;
 	const typesPath = `${options.types}/datocms-cda-schema.d.ts`;
 	const modulesPath = `${options.types}/datocms-document-modules.d.ts`;
+	const urqlPath = `${options.queries}`;
 	const queriesPath = `${options.queries}/datocms-graphql-queries.ts`;
 
 	return {
@@ -118,6 +124,12 @@ const getConfig = (options: GraphqlCodegenOptions): Types.Config => {
 			[queriesPath]: {
 				plugins: ['typed-document-node'],
 				config: { ...defaultModuleConfig },
+			},
+			[urqlPath]: {
+				plugins: ['typescript-vue-urql'],
+				config: {
+					...defaultModuleConfig,
+				},
 			},
 			/*
 			[modulesPath]: {
