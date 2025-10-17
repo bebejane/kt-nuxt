@@ -1,11 +1,4 @@
 import { defineNuxtConfig } from 'nuxt/config';
-import { fileURLToPath } from 'node:url';
-import { dirname } from 'node:path';
-
-const rootDir = dirname(fileURLToPath(import.meta.url))
-	.split('/')
-	.slice(0, -3)
-	.join('/');
 
 export default defineNuxtConfig({
 	$meta: {
