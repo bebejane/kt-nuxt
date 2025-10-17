@@ -1,6 +1,6 @@
 {
-	"name": "kt-nuxt-datocms",
-	"version": "1.0.8",
+	"name": "kt-nuxt",
+	"version": "1.0.9",
 	"description": "",
 	"main": "index.js",
 	"scripts": {
