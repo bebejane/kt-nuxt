@@ -1,6 +1,6 @@
 {
 	"name": "kt-nuxt",
-	"version": "1.0.30",
+	"version": "1.0.31",
 	"description": "",
 	"main": "index.js",
 	"scripts": {
@@ -8,7 +8,7 @@
 		"app": "pnpm packages @nuxt-monorepo/app",
 		"dev": "dotenv -- pnpm -r dev",
 		"build": "dotenv -- pnpm -r build",
-		"pub": "npm version patch --force && git add . && git commit -m \"update\" && git push"
+		"pub": "npm version patch --force && git add . && git commit -m \"v$(node -p \"require('./package.json').version\")\" && git push"
 	},
 	"devDependencies": {
 		"dotenv-cli": "^7.3.0"
