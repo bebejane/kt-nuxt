@@ -1,6 +1,5 @@
 {
   "files.exclude": {
-    ".nuxt": false,
-    ".vscode": false
+    ".vscode": true
   }
 }
