@@ -18,9 +18,6 @@
 		},
 		{
 			"path": "packages/auth"
-		},
-		{
-			"path": "../vue-datocms"
 		}
 	],
 	"settings": {}
