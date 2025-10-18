@@ -92,6 +92,9 @@ importers:
       nuxt:
         specifier: ^4.1.3
         version: 4.1.3(@parcel/watcher@2.5.1)(@types/node@24.8.1)(@vue/compiler-sfc@3.5.22)(db0@0.3.4)(eslint@9.37.0(jiti@2.6.1))(ioredis@5.8.1)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.52.4)(sass-embedded@1.93.2)(sass@1.93.2)(terser@5.44.0)(typescript@5.9.3)(vite@7.1.10(@types/node@24.8.1)(jiti@2.6.1)(sass-embedded@1.93.2)(sass@1.93.2)(terser@5.44.0)(yaml@2.8.1))(yaml@2.8.1)
+      typescript-vue-datocms:
+        specifier: github:bebejane/typescript-vue-datocms
+        version: https://codeload.github.com/bebejane/typescript-vue-datocms/tar.gz/7732905bfff8431cb145772d5888c6c8986d8cb8(graphql-tag@2.12.6(graphql@16.11.0))(graphql@16.11.0)
 
   packages/i18n:
     dependencies:
@@ -4862,6 +4865,14 @@ packages:
 
   type-level-regexp@0.1.17:
     resolution: {integrity: sha512-wTk4DH3cxwk196uGLK/E9pE45aLfeKJacKmcEgEOA/q5dnPGNxXt0cfYdFxb57L+sEpf1oJH4Dnx/pnRcku9jg==}
+
+  typescript-vue-datocms@https://codeload.github.com/bebejane/typescript-vue-datocms/tar.gz/7732905bfff8431cb145772d5888c6c8986d8cb8:
+    resolution: {tarball: https://codeload.github.com/bebejane/typescript-vue-datocms/tar.gz/7732905bfff8431cb145772d5888c6c8986d8cb8}
+    version: 0.0.1
+    engines: {node: '>= 16.0.0'}
+    peerDependencies:
+      graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
+      graphql-tag: ^2.0.0
 
   typescript@5.9.3:
     resolution: {integrity: sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw==}
@@ -10672,6 +10683,19 @@ snapshots:
       tagged-tag: 1.0.0
 
   type-level-regexp@0.1.17: {}
+
+  typescript-vue-datocms@https://codeload.github.com/bebejane/typescript-vue-datocms/tar.gz/7732905bfff8431cb145772d5888c6c8986d8cb8(graphql-tag@2.12.6(graphql@16.11.0))(graphql@16.11.0):
+    dependencies:
+      '@graphql-codegen/plugin-helpers': 3.1.2(graphql@16.11.0)
+      '@graphql-codegen/visitor-plugin-common': 2.13.8(graphql@16.11.0)
+      auto-bind: 4.0.0
+      change-case-all: 1.0.15
+      graphql: 16.11.0
+      graphql-tag: 2.12.6(graphql@16.11.0)
+      tslib: 2.8.1
+    transitivePeerDependencies:
+      - encoding
+      - supports-color
 
   typescript@5.9.3: {}
 

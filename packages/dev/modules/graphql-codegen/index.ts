@@ -127,7 +127,7 @@ const getConfig = (options: GraphqlCodegenOptions): Types.Config => {
 				config: { ...defaultModuleConfig },
 			},
 			[datoCmsPath]: {
-				plugins: ['/Users/bebejane/Projects/typescript-vue-datocms/dist/index.js'],
+				plugins: ['typescript-vue-datocms'],
 				config: {
 					...defaultModuleConfig,
 				},
