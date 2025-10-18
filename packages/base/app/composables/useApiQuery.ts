@@ -22,6 +22,7 @@ export const useApiQuery = async <TResult, TVariables = void>(
 	const { data, ...rest } = await useAsyncData(key, () => executeQuery(query, opt));
 	return { ...rest, ...data.value } as Omit<ReturnType<typeof useAsyncData<TResult>>, 'data'> & TResult;
 };
+
 /*
 const executeAllQuery = async <TResult, TVariables = void>(
 	query: TypedDocumentNode<TResult, TVariables>,
