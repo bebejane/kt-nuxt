@@ -134,12 +134,6 @@ const getConfig = (options: GraphqlCodegenOptions): Types.Config => {
 				},
 			},
 			*/
-			/*
-			[modulesPath]: {
-				plugins: ['typescript-graphql-files-modules'],
-				config: { ...defaultModuleConfig },
-			},
-			*/
 		},
 	};
 };
