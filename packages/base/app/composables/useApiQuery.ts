@@ -1,14 +1,15 @@
 import { executeQuery, type ExecuteQueryOptions } from '@datocms/cda-client';
-import type { DocumentNode, FieldNode, OperationDefinitionNode, VariableDefinitionNode } from 'graphql';
+import type { TypedDocumentNode } from '@graphql-typed-document-node/core';
+import type { FieldNode, OperationDefinitionNode, VariableDefinitionNode } from 'graphql';
 import { useAsyncData } from '#imports';
 
-export const useApiQuery = async <T, V = void>(
+export const useApiQuery = async <TResult, TVariables = void>(
 	key: string,
-	query: DocumentNode,
-	options?: Omit<ExecuteQueryOptions<V>, 'token'> & { all?: boolean }
-): Promise<ReturnType<typeof useAsyncData<T>>> => {
+	query: TypedDocumentNode<TResult, TVariables>,
+	options?: Omit<ExecuteQueryOptions<TVariables>, 'token'> & { all?: boolean }
+): Promise<ReturnType<typeof useAsyncData<TResult>>> => {
 	const config = useRuntimeConfig();
-	const opt: ApiQueryOptions<V> = { ...options, token: config.public.apiToken };
+	const opt: ApiQueryOptions<TVariables> = { ...options, token: config.public.apiToken };
 	const operation = query.definitions?.find(({ kind }) => kind === 'OperationDefinition') as OperationDefinitionNode;
 	console.log(
 		`useApiQuery: ${operation.name?.value} (${operation.variableDefinitions?.reduce(
@@ -19,18 +20,18 @@ export const useApiQuery = async <T, V = void>(
 	);
 
 	return useAsyncData(key, () =>
-		options?.all ? executeAllQuery<T, V>(query, opt, {}, key) : executeQuery(query, opt)
+		options?.all ? executeAllQuery<TResult, TVariables>(query, opt, {}, key) : executeQuery(query, opt)
 	);
 };
 
 const log = (...args: any[]) => console.log(...args);
 
-const executeAllQuery = async <T, V = void>(
-	query: DocumentNode,
-	options: ExecuteQueryOptions<V>,
+const executeAllQuery = async <TResult, TVariables = void>(
+	query: TypedDocumentNode<TResult, TVariables>,
+	options: ExecuteQueryOptions<TVariables>,
 	data: { [key: string]: any },
 	queryId: string
-): Promise<T> => {
+): Promise<TResult> => {
 	try {
 		if (typeof data !== 'object' || data === null || data === undefined) throw new Error('Data must be an object');
 
@@ -81,7 +82,7 @@ const executeAllQuery = async <T, V = void>(
 			const maxPageKey = pageKeyMap[key] as string;
 			const skip = data[maxPageKey].length;
 
-			const pageData: any = await executeQuery<T>(query, {
+			const pageData: any = await executeQuery<TResult>(query, {
 				...options,
 				variables: {
 					...options.variables,
@@ -102,7 +103,7 @@ const executeAllQuery = async <T, V = void>(
 			}
 		}
 
-		return data as T;
+		return data as TResult;
 	} catch (e) {
 		throw new Error(`${queryId}: ${(e as Error).message}`);
 	}
