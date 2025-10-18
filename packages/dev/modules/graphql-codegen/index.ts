@@ -103,7 +103,8 @@ const getConfig = (options: GraphqlCodegenOptions): Types.Config => {
 	const documents = `${options.dir}/**/*.gql`;
 	const typesPath = `${options.types}/datocms-cda-schema.d.ts`;
 	const modulesPath = `${options.types}/datocms-document-modules.d.ts`;
-	const urqlPath = `${options.queries}`;
+	const urqlPath = `${options.queries}/urql-queries.ts`;
+	const datoCmsPath = `${options.queries}/datocms-queries.ts`;
 	const queriesPath = `${options.queries}/datocms-graphql-queries.ts`;
 
 	return {
@@ -125,8 +126,8 @@ const getConfig = (options: GraphqlCodegenOptions): Types.Config => {
 				plugins: ['typed-document-node'],
 				config: { ...defaultModuleConfig },
 			},
-			[urqlPath]: {
-				plugins: ['typescript-vue-urql'],
+			[datoCmsPath]: {
+				plugins: ['github:bebejane/typescript-vue-datocms'],
 				config: {
 					...defaultModuleConfig,
 				},
