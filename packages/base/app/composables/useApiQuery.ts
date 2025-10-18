@@ -4,9 +4,9 @@ import type { FieldNode, OperationDefinitionNode, VariableDefinitionNode } from 
 import { useAsyncData } from '#imports';
 
 export const useApiQuery = async <TResult, TVariables = void>(
-	key: string,
 	query: TypedDocumentNode<TResult, TVariables>,
-	options?: Omit<ExecuteQueryOptions<TVariables>, 'token'> & { all?: boolean }
+	options?: Omit<ExecuteQueryOptions<TVariables>, 'token'> & { all?: boolean },
+	key?: string
 ): Promise<ReturnType<typeof useAsyncData<TResult>>> => {
 	const config = useRuntimeConfig();
 	const opt: ApiQueryOptions<TVariables> = { ...options, token: config.public.apiToken };
@@ -20,7 +20,7 @@ export const useApiQuery = async <TResult, TVariables = void>(
 	);
 
 	return useAsyncData(key, () =>
-		options?.all ? executeAllQuery<TResult, TVariables>(query, opt, {}, key) : executeQuery(query, opt)
+		options?.all ? executeAllQuery<TResult, TVariables>(query, opt, {}) : executeQuery(query, opt)
 	);
 };
 
@@ -29,8 +29,7 @@ const log = (...args: any[]) => console.log(...args);
 const executeAllQuery = async <TResult, TVariables = void>(
 	query: TypedDocumentNode<TResult, TVariables>,
 	options: ExecuteQueryOptions<TVariables>,
-	data: { [key: string]: any },
-	queryId: string
+	data: { [key: string]: any }
 ): Promise<TResult> => {
 	try {
 		if (typeof data !== 'object' || data === null || data === undefined) throw new Error('Data must be an object');
@@ -105,6 +104,6 @@ const executeAllQuery = async <TResult, TVariables = void>(
 
 		return data as TResult;
 	} catch (e) {
-		throw new Error(`${queryId}: ${(e as Error).message}`);
+		throw new Error(`${(e as Error).message}`);
 	}
 };
