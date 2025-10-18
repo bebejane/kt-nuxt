@@ -126,12 +126,14 @@ const getConfig = (options: GraphqlCodegenOptions): Types.Config => {
 				plugins: ['typed-document-node'],
 				config: { ...defaultModuleConfig },
 			},
+			/*
 			[datoCmsPath]: {
 				plugins: ['/Users/bebejane/Projects/typescript-vue-datocms/dist/index.js'],
 				config: {
 					...defaultModuleConfig,
 				},
 			},
+			*/
 			/*
 			[modulesPath]: {
 				plugins: ['typescript-graphql-files-modules'],
