@@ -7,7 +7,7 @@ export const useApiQuery = async <TResult, TVariables = void>(
 	query: TypedDocumentNode<TResult, TVariables>,
 	options?: Omit<ExecuteQueryOptions<TVariables>, 'token'> & { all?: boolean },
 	key?: string
-): Promise<Omit<ReturnType<typeof useAsyncData<TResult>>, 'data'> & TResult> => {
+): Promise<Omit<Awaited<ReturnType<typeof useAsyncData<TResult>>>, 'data'> & (TResult extends null ? {} : TResult)> => {
 	const config = useRuntimeConfig();
 	const opt: ApiQueryOptions<TVariables> = { ...options, token: config.public.apiToken };
 	const operation = query.definitions?.find(({ kind }) => kind === 'OperationDefinition') as OperationDefinitionNode;
@@ -20,7 +20,11 @@ export const useApiQuery = async <TResult, TVariables = void>(
 	);
 
 	const { data, ...rest } = await useAsyncData(key, () => executeQuery(query, opt));
-	return { ...rest, ...data.value } as Omit<ReturnType<typeof useAsyncData<TResult>>, 'data'> & TResult;
+	return { ...rest, ...(data.value ?? ({} as TResult)) } as Omit<
+		Awaited<ReturnType<typeof useAsyncData<TResult>>>,
+		'data'
+	> &
+		(TResult extends null ? {} : TResult);
 };
 
 /*
